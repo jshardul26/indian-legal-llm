@@ -1,8 +1,15 @@
+
+import sys
+from pathlib import Path
+
+ROOT_DIR = Path(__file__).resolve().parent.parent
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
+
 import streamlit as st
 import yaml
 import psutil
 import torch
-from pathlib import Path
 from app.model_loader import load_config, initialize_model, get_model_info, check_adapter_exists
 
 st.set_page_config(page_title="Indian Legal QA", layout="wide")
@@ -116,3 +123,4 @@ if question:
         
         except Exception as e:
             st.error(f"Error generating response: {str(e)}")
+
